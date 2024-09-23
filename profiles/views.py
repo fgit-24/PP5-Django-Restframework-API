@@ -5,4 +5,5 @@ from .models import Profile
 class ProfileList(APIView):
     def get(self, request):
         profiles = Profile.objects.all()
-        return Response(profiles)
+        serializer = ProfileSerializer(profiles, many=True)
+        return Response(serializer.data)
