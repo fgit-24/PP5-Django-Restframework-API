@@ -11,28 +11,16 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-import environ
 import os
-
-# Initialize environment variables
-env = environ.Env(
-    DEBUG=(bool, False)  # Default DEBUG to False if not set
-)
-
-# Reading .env file
-environ.Env.read_env(os.path.join(Path(__file__).resolve().parent.parent, '.env'))
 
 if os.path.exists('env.py'):
     import env
 
-
 CLOUDINARY_STORAGE = {
     'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL')
 }
-
 MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -40,12 +28,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY', default='unsafe-secret-key')
+SECRET_KEY = 'django-insecure-*w$32jt6!)bn-%gnf&32v!^$+(0@ey(%z)b-8ka626jj7*ej9l'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG', default=False)
+DEBUG = True
 
-ALLOWED_HOSTS = env('ALLOWED_HOSTS', default='').split(',')
+ALLOWED_HOSTS = ['8000-fgit24-djangorestframew-5odyfbxtxqd.ws.codeinstitute-ide.net',]
 
 # Application definition
 INSTALLED_APPS = [
