@@ -62,9 +62,16 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = ['8000-fgit24-pp5djangorestfra-2g3snzvwd56.ws.codeinstitute-ide.net', 'pp5-social-media.com']
+ALLOWED_HOSTS = [
+    '8000-fgit24-pp5djangorestfra-2g3snzvwd56.ws.codeinstitute-ide.net', 
+    'pp5-api-social-media-f-2f5110de11cf.herokuapp.com',
+    'localhost',
+]
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-fgit24-pp5djangorestfra-2g3snzvwd56.ws.codeinstitute-ide.net']
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-fgit24-pp5djangorestfra-2g3snzvwd56.ws.codeinstitute-ide.net',
+    'https://pp5-api-social-media-f-2f5110de11cf.herokuapp.com',
+]
 
 # Application definition
 
