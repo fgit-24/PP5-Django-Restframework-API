@@ -62,10 +62,9 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = ['8000-fgit24-djangorestframew-5odyfbxtxqd.ws.codeinstitute-ide.net', 'social-media-moments.herokuapp.com']
+ALLOWED_HOSTS = ['8000-fgit24-pp5djangorestfra-2g3snzvwd56.ws.codeinstitute-ide.net', 'pp5-social-media.com']
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-fgit24-djangorestframew-5odyfbxtxqd.ws.codeinstitute-ide.net']
-
+CSRF_TRUSTED_ORIGINS = ['https://8000-fgit24-pp5djangorestfra-2g3snzvwd56.ws.codeinstitute-ide.net']
 
 # Application definition
 
@@ -105,6 +104,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 
