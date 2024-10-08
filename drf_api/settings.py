@@ -65,12 +65,16 @@ DEBUG = 'DEV' in os.environ
 ALLOWED_HOSTS = [
     '8000-fgit24-pp5djangorestfra-2g3snzvwd56.ws.codeinstitute-ide.net', 
     'pp5-api-social-media-f-2f5110de11cf.herokuapp.com',
+    'prototype-pp5-react.herokuapp.com',
+    '3000-fgit24-prototypepp5reac-2lu1c6isb47.ws.codeinstitute-ide.net',
     'localhost',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-fgit24-pp5djangorestfra-2g3snzvwd56.ws.codeinstitute-ide.net',
     'https://pp5-api-social-media-f-2f5110de11cf.herokuapp.com',
+    'https://prototype-pp5-react.herokuapp.com',
+    'https://3000-fgit24-prototypepp5reac-2lu1c6isb47.ws.codeinstitute-ide.net',
 ]
 
 # Application definition
