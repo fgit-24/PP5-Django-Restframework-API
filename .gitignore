@@ -1,12 +1,10 @@
 core.Microsoft*
 core.mongo*
 core.python*
+.env
 .env.py
 __pycache__/
 *.py[cod]
 node_modules/
 .github/
-.env.py
 cloudinary_python.txt
-
-.env.py
