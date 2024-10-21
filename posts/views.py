@@ -1,40 +1,46 @@
 from django.db.models import Count
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 from rest_framework import generics, permissions, filters
 from django_filters.rest_framework import DjangoFilterBackend
-from drf_api.permissions import IsOwnerOrReadOnly
 from .models import Post
 from .serializers import PostSerializer
+from social_api.permissions import IsOwnerOrReadOnly
 
 
 class PostList(generics.ListCreateAPIView):
     """
-    List posts or create a post if logged in
-    The perform_create method associates the post with the logged in user.
+    Returns a list of all posts.
+    A post can be created by an authenticated user.
+    In the queryset, annotate the number of likes for each post,
+    related to Post through related_name="likes".
     """
+    queryset = Post.objects.annotate(
+        likes_count=Count('likes'),
+        comments_count=Count('comments'),
+    ).order_by('-created_at')
     serializer_class = PostSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    queryset = Post.objects.annotate(
-        likes_count=Count('likes', distinct=True),
-        comments_count=Count('comment', distinct=True)
-    ).order_by('-created_at')
     filter_backends = [
-        filters.OrderingFilter,
         filters.SearchFilter,
+        filters.OrderingFilter,
         DjangoFilterBackend,
     ]
     filterset_fields = [
-        'owner__followed__owner__profile',
         'likes__owner__profile',
         'owner__profile',
+        'owner__profile__id',
     ]
     search_fields = [
         'owner__username',
         'title',
+        'tags__name',
     ]
     ordering_fields = [
         'likes_count',
         'comments_count',
-        'likes__created_at',
+        'created_at',
     ]
 
     def perform_create(self, serializer):
@@ -43,11 +49,26 @@ class PostList(generics.ListCreateAPIView):
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     """
-    Retrieve a post and edit or delete it if you own it.
+    Provides the details for a single post,
+    update and delete it if you own it.
     """
+    queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = [IsOwnerOrReadOnly]
-    queryset = Post.objects.annotate(
-        likes_count=Count('likes', distinct=True),
-        comments_count=Count('comment', distinct=True)
-    ).order_by('-created_at')
+
+
+class IncrementDownloadCount(APIView):
+    """
+    Increments the download count for a single post,
+    when a user clicks on the download button.
+    """
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def post(self, request, pk):
+        try:
+            post = Post.objects.get(pk=pk)
+            post.download_count += 1
+            post.save()
+            return Response(status=status.HTTP_200_OK)
+        except Post.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
