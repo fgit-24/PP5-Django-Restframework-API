@@ -1,6 +1,7 @@
 from rest_framework import generics, permissions
 from .models import Report
 from .serializers import ReportSerializer
+from rest_framework.renderers import JSONRenderer
 
 
 class ReportList(generics.ListCreateAPIView):

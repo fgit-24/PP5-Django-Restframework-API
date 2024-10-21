@@ -4,6 +4,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from social_api.permissions import IsOwnerOrReadOnly
 from .models import Comment
 from .serializers import CommentSerializer, CommentDetailSerializer
+from rest_framework.renderers import JSONRenderer
 
 
 class CommentList(generics.ListCreateAPIView):

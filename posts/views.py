@@ -7,6 +7,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from .models import Post
 from .serializers import PostSerializer
 from social_api.permissions import IsOwnerOrReadOnly
+from rest_framework.renderers import JSONRenderer
 
 
 class PostList(generics.ListCreateAPIView):
