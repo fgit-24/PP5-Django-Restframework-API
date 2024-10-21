@@ -66,9 +66,9 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 os.environ['SECRET_KEY'] = 'SECRET_KEY'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['social-api-f-f73ebdfcae43.herokuapp.com', '8000-fgit24-pp5djangorestfra-1rz93lssq7z.ws.codeinstitute-ide.net']
+ALLOWED_HOSTS = ['social-api-f-f73ebdfcae43.herokuapp.com', '8000-fgit24-pp5djangorestfra-1rz93lssq7z.ws.codeinstitute-ide.net', '3000-fgit24-reactsocialmedia-qpylgfg1077.ws.codeinstitute-ide.net', 'social-frontent-pp5-bbb72fd984a6.herokuapp.com']
 
 
 # Application definition
@@ -192,11 +192,15 @@ AUTH_PASSWORD_VALIDATORS = [
 CSRF_TRUSTED_ORIGINS = [
     "https://social-api-f-f73ebdfcae43.herokuapp.com",
     "https://8000-fgit24-pp5djangorestfra-1rz93lssq7z.ws.codeinstitute-ide.net",
+    "https://3000-fgit24-reactsocialmedia-qpylgfg1077.ws.codeinstitute-ide.net",
+    "https://social-frontent-pp5-bbb72fd984a6.herokuapp.com",
 ]
 
 CORS_ALLOWED_ORIGINS = [
     "https://social-api-f-f73ebdfcae43.herokuapp.com",
     "https://8000-fgit24-pp5djangorestfra-1rz93lssq7z.ws.codeinstitute-ide.net",
+    "https://3000-fgit24-reactsocialmedia-qpylgfg1077.ws.codeinstitute-ide.net",
+    "https://social-frontent-pp5-bbb72fd984a6.herokuapp.com",
 ]
 
 
