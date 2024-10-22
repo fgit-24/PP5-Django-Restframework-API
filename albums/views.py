@@ -1,7 +1,6 @@
 from rest_framework import generics, permissions
 from .models import Album
 from .serializers import AlbumSerializer
-from rest_framework.renderers import JSONRenderer
 
 
 class AlbumList(generics.ListCreateAPIView):

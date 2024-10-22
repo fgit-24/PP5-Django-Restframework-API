@@ -2,7 +2,6 @@ from rest_framework import generics
 from social_api.permissions import IsOwnerOrReadOnly
 from .models import Profile
 from .serializers import ProfileSerializer
-from rest_framework.renderers import JSONRenderer
 
 
 class ProfileList(generics.ListAPIView):

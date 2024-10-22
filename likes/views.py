@@ -2,7 +2,6 @@ from rest_framework import generics, permissions
 from social_api.permissions import IsOwnerOrReadOnly
 from .models import Like
 from .serializers import LikeSerializer
-from rest_framework.renderers import JSONRenderer
 
 
 class LikeList(generics.ListCreateAPIView):
