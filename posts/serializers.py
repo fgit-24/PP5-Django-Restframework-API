@@ -26,10 +26,12 @@ class PostSerializer(TaggitSerializer, serializers.ModelSerializer):
         return request.user == obj.owner
 
     def validate_image(self, value):
+        if not value:  # Allow empty image
+            return value
         path = Path(value.name)
         file_extension = path.suffix.lower()
         valid_extensions = ['.jpg', '.jpeg', '.png']
-        
+
         # Check for valid file extensions
         if file_extension not in valid_extensions:
             raise serializers.ValidationError(

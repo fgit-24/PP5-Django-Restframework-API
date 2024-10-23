@@ -9,12 +9,6 @@ from .serializers import PostSerializer
 from social_api.permissions import IsOwnerOrReadOnly
 
 class PostList(generics.ListCreateAPIView):
-    """
-    Returns a list of all posts.
-    A post can be created by an authenticated user.
-    In the queryset, annotate the number of likes for each post,
-    related to Post through related_name="likes".
-    """
     queryset = Post.objects.annotate(
         likes_count=Count('likes'),
         comments_count=Count('comments'),
@@ -46,19 +40,11 @@ class PostList(generics.ListCreateAPIView):
         serializer.save(owner=self.request.user)
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
-    """
-    Provides the details for a single post,
-    update and delete it if you own it.
-    """
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = [IsOwnerOrReadOnly]
 
 class IncrementDownloadCount(APIView):
-    """
-    Increments the download count for a single post,
-    when a user clicks on the download button.
-    """
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def post(self, request, pk):
