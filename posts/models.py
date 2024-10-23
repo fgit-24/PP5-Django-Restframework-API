@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from taggit.managers import TaggableManager
 
-
 class Post(models.Model):
     """
     Post model related to User.
@@ -15,7 +14,7 @@ class Post(models.Model):
     content = models.TextField(blank=True)
     image = models.ImageField(
         upload_to='images/', default='../default_post_hy4tc9', blank=True
-        )
+    )
     tags = TaggableManager()
     download_count = models.PositiveIntegerField(default=0)
 
