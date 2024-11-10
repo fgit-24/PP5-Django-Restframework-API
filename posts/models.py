@@ -5,7 +5,6 @@ from taggit.managers import TaggableManager
 class Post(models.Model):
     """
     Post model related to User.
-    A default image is used if no image is provided.
     """
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
