@@ -31,12 +31,10 @@ Users can sign up to engage in activities such as uploading and downloading imag
   - [Validation](#validation)
   - [Manual Testing](#manual-testing)
     - [root_route](#root_route)
-    - [albums](#albums)
     - [comments](#comments)
     - [likes](#likes)
     - [posts](#posts)
     - [profiles](#profiles)
-    - [reports](#reports)
 - [Deployment](#deployment)
   - [Cloning and Forking](#cloning-and-forking)
 - [Technologies Used](#technologies-used)
@@ -75,31 +73,9 @@ Consequently, the [backend](https://github.com/Code-Institute-Solutions/drf-api/
 
   Additionally, posts and comments can be liked independently of each other.
 
-- **My Post Model:**
 
-  My model incorporates [django-taggit](https://django-taggit.readthedocs.io/en/latest/) to enable users to add tags to their posts.
+![Entity Relational Diagram]()
 
-  This feature enhances the searchability that the Moments project lacks.
-
-  Furthermore, users can download images, and my model tracks the number of times each image has been downloaded.
-
-- **My Album Model:**
-
-  The Moments project does not include this feature.
-
-  My model enables users to create albums on their profile pages to save posts.
-
-- **My Report Model:**
-
-  This feature is absent in the Moments project.
-
-  Users have the ability to report posts if they find the content inappropriate for any reason.
-
-The results can be visualized here:
-
-![Entity Relational Diagram](documentation/entity_relational_diagram/erd_diagram.png)
-
-![Report model]()
 
 ### API Endpoints
 
@@ -107,15 +83,12 @@ Here are the API endpoints utilized by my API:
 
 ![API-endpoints]()
 
-![Reports endpoint]()
-
 ## Testing
 
 ### Unit Tests
 
 I have developed approximately 50 automated tests for my views, all of which have passed.
 
-- Album view tests can be found here: [Album view tests]()
 
 - Comment view tests are available here: [Comments view tests]()
 
@@ -125,7 +98,6 @@ I have developed approximately 50 automated tests for my views, all of which hav
 
 - Profile view tests are available here: [Profile view tests]()
 
-- Report view tests can be accessed here: [Report view tests]()
 
 ### Validation
 
@@ -142,18 +114,7 @@ Every item listed under "Works" was manually tested, and marked with an X for ye
 |The root_route URL loads                           |X  |   |
 |Welcome message is displayed on the landing page   |X  |   |
 
-#### albums
 
-|Works                                                   |YES |NO |
-|--------------------------------------------------------|:---:|---|
-|`albums/` is not accessible if not logged in            |X  |   |
-|`albums/<int:pk>/` is not accessible if not logged in   |X  |   |
-|`albums/` is accessible to users if logged in           |X  |   |
-|`albums/<int:pk>/` is accessible to users if logged in   |X  |   |
-|Logged-in users can create an album and add posts to it  |X  |   |
-|Logged-in users can view their albums                    |X  |   |
-|Logged-in users can update an album                      |X  |   |
-|Logged-in users can delete an album                      |X  |   |
 
 #### comments
 
@@ -195,12 +156,8 @@ Every item listed under "Works" was manually tested, and marked with an X for ye
 |Posts can not be deleted if not logged in as its owner                   |X  |   |
 |Posts can be edited by its owner                                         |X  |   |
 |Posts can be deleted by its owner                                        |X  |   |
-|I can increment download count by posting to `posts/<int:pk>/download/`  |X  |   |
 |comments_count increments by one when I add a comment to a post          |X  |   |
 |likes_count increments by one when I add a like to a post                |X  |   |
-|I can upload an image to a post                                          |X  |   |
-|File extension must be jpg, jpeg or png when uploading an image          |X  |   |
-|If file extension is not jpg, jpeg or png an error informs the user      |X  |   |
 
 #### Posts
 
@@ -218,9 +175,7 @@ Every item listed under "Works" was manually tested, and marked with an X for ye
 | I can increment the download count by accessing `posts/<int:pk>/download/` | X  |   |
 | `comments_count` increases by one when I add a comment to a post        | X  |   |
 | `likes_count` increases by one when I add a like to a post              | X  |   |
-| I can upload an image to a post                                          | X  |   |
-| When uploading an image, the file extension must be jpg, jpeg, or png   | X  |   |
-| If the file extension is not jpg, jpeg, or png, an error message is shown to the user | X  |   |
+
 
 #### Profiles
 
@@ -234,14 +189,6 @@ Every item listed under "Works" was manually tested, and marked with an X for ye
 | I can add a profile image                                            | X  |   |
 | If I don't own the profile, I can only view it                      | X  |   |
 
-#### Reports
-
-| Works                                                                | YES | NO |
-|---------------------------------------------------------------------|:---:|---|
-| `reports/` is not accessible without logging in                     | X  |   |
-| `reports/` is accessible when logged in                              | X  |   |
-| When logged in, I can report a post                                  | X  |   |
-| I can view reports made by users in the admin panel                 | X  |   |
 
 ## Deployment
 
@@ -478,19 +425,6 @@ This API was developed using Python.
   
   A PostgreSQL adapter for Python.
 
-#### Image Handling
-
-- cloudinary
-  
-  Facilitates interaction with Cloudinary, a cloud-based image storage service.
-
-- django-cloudinary-storage
-  
-  Integrates Cloudinary for media storage within Django.
-
-- Pillow
-  
-  Used for image processing tasks.
 
 #### Utilities
 
@@ -502,17 +436,10 @@ This API was developed using Python.
   
   Adds Cross-Origin Resource Sharing headers to allow requests to a Django application from other origins.
 
-- django-taggit
-  
-  Used for adding tags to posts in this project, enhancing the searchability of content.
 
 ### Database Used
 
 For this project, I employed a PostgreSQL database via [Elephant SQL](https://www.elephantsql.com/).
-
-### Image Storage
-
-I utilized [Cloudinary](https://cloudinary.com/) for image storage.
 
 ### Deployment Service
 
@@ -535,10 +462,4 @@ and its backend counterpart [drf_api](https://github.com/Code-Institute-Solution
 
 While there are many similarities in the code,
 
-I created custom Post, Like, and Album models tailored to the specific needs of my project,
-
-resulting in other differences in the codebase as well.
-
-I opted to use the same default images for profiles and posts in the absence of user-uploaded images,
-
-as these were already available in my Cloudinary storage and met my requirements.
+I created custom Post, and Like models tailored to the specific needs of my project, resulting in other differences in the codebase as well.
