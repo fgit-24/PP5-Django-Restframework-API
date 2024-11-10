@@ -13,10 +13,6 @@ class Profile(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     username = models.CharField(max_length=255)
     bio = models.TextField(blank=True)
-    image = models.ImageField(
-        upload_to='images/',
-        default='../default_profile_d1fplg',
-    )
 
     class Meta:
         ordering = ['-created_at']

@@ -14,46 +14,14 @@ class PostSerializer(TaggitSerializer, serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
-    profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
     comments_count = serializers.SerializerMethodField()
-    download_count = serializers.ReadOnlyField()
-    tags = TagListSerializerField()
     like_id = serializers.SerializerMethodField()
     likes_count = serializers.SerializerMethodField()
 
     def get_is_owner(self, obj):
         request = self.context['request']
         return request.user == obj.owner
-
-    def validate_image(self, value):
-        if not value:  # Allow empty image
-            return value
-        path = Path(value.name)
-        file_extension = path.suffix.lower()
-        valid_extensions = ['.jpg', '.jpeg', '.png']
-
-        # Check for valid file extensions
-        if file_extension not in valid_extensions:
-            raise serializers.ValidationError(
-                'Image must be jpg, jpeg or png!'
-            )
         
-        if value.size > 5 * 1024 * 1024:
-            raise serializers.ValidationError(
-                'Image size larger than 5MB!'
-            )
-        
-        img = PilImage.open(value)
-        if img.height > 4096:
-            raise serializers.ValidationError(
-                'Image height larger than 4096px!'
-            )
-        if img.width > 4096:
-            raise serializers.ValidationError(
-                'Image width larger than 4096px!'
-            )
-        
-        return value
 
     def get_like_id(self, obj):
         user = self.context['request'].user
@@ -78,11 +46,8 @@ class PostSerializer(TaggitSerializer, serializers.ModelSerializer):
             'title',
             'content',
             'image',
-            'tags',
-            'download_count',
             'is_owner',
             'profile_id',
-            'profile_image',
             'comments_count',
             'like_id',
             'likes_count',

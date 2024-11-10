@@ -28,7 +28,6 @@ class PostList(generics.ListCreateAPIView):
     search_fields = [
         'owner__username',
         'title',
-        'tags__name',
     ]
     ordering_fields = [
         'likes_count',
@@ -50,7 +49,6 @@ class IncrementDownloadCount(APIView):
     def post(self, request, pk):
         try:
             post = Post.objects.get(pk=pk)
-            post.download_count += 1
             post.save()
             return Response(status=status.HTTP_200_OK)
         except Post.DoesNotExist:

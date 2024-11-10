@@ -12,7 +12,6 @@ class ProfileAdmin(admin.ModelAdmin):
         'username',
         'created_at',
         'updated_at',
-        'image',
     )
     list_filter = (
         'username',

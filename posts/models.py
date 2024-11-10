@@ -12,11 +12,6 @@ class Post(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     title = models.CharField(max_length=255)
     content = models.TextField(blank=True)
-    image = models.ImageField(
-        upload_to='images/', default='../default_post_hy4tc9', blank=True
-    )
-    tags = TaggableManager()
-    download_count = models.PositiveIntegerField(default=0)
 
     class Meta:
         ordering = ['-created_at']

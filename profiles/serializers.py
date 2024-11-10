@@ -14,14 +14,6 @@ class ProfileSerializer(serializers.ModelSerializer):
         request = self.context['request']
         return request.user == obj.owner
 
-    def validate_image(self, value):
-        try:
-            img = PilImage.open(value)
-            if img.format not in ['JPEG', 'JPG']:
-                raise serializers.ValidationError("Only JPG images are allowed.")
-        except Exception as e:
-            raise serializers.ValidationError("Invalid image file. Error: " + str(e))
-        return value
 
     class Meta:
         model = Profile
@@ -32,6 +24,5 @@ class ProfileSerializer(serializers.ModelSerializer):
             'updated_at',
             'username',
             'bio',
-            'image',
             'is_owner',
         ]

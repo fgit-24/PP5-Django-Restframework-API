@@ -5,5 +5,4 @@ from . import views
 urlpatterns = [
     path('posts/', views.PostList.as_view()),
     path('posts/<int:pk>/', views.PostDetail.as_view()),
-    path('posts/<int:pk>/download/', views.IncrementDownloadCount.as_view()),
 ]
