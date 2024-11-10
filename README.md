@@ -59,6 +59,9 @@ Users can sign up to engage in activities such as uploading and downloading imag
 
 ### Entity Relational Diagram
 
+![ERD](documentation/entity_relational_diagram/erd.png)
+
+
 In my design phase, I mapped out my models using a spreadsheet.
 
 This project draws inspiration from the [Moments](https://github.com/Code-Institute-Solutions/moments/tree/304244f540308ff4dd3c961352f55a633a4b3bed) walkthrough project, which means some code may be identical or similar.
@@ -73,15 +76,6 @@ Consequently, the [backend](https://github.com/Code-Institute-Solutions/drf-api/
 
   Additionally, posts and comments can be liked independently of each other.
 
-
-![Entity Relational Diagram]()
-
-
-### API Endpoints
-
-Here are the API endpoints utilized by my API:
-
-![API-endpoints]()
 
 ## Testing
 
